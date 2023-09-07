@@ -11,7 +11,8 @@ node {
 
     stage('Push image') {
         docker.withRegistry('', 'dockerhub') {
-            app.push("${env.BUILD_NUMBER}")
+            // Use --password-stdin for better security
+            app.push("${env.BUILD_NUMBER}", "--password-stdin")
         }
     }
 
